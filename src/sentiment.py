@@ -21,7 +21,8 @@ import math
 import gensim.downloader
 
 import tensorflow as tf
-from tensorflow.keras import datasets, layers, models
+layers = tf.keras.layers
+models = tf.keras.models
 
 import numpy
 
@@ -39,22 +40,52 @@ def load_subjective_dataset(n_instances = 5000):
 
     return train_test_split(documents, categories, stratify=categories)
 
-def load_twitter_sentiment_dataset(nrows = None):
-    csv = pandas.read_csv("dataset/twitter_training.csv", header=None, nrows=nrows)
-    csv.columns = ["id", "entity", "sentiment", "content"]
+def clean_tweets(tweets):
+    replace_regex = re.compile("#|-+\\s*\\.?\\s*ignore tags\\s*\\.?\\s*-+\\.|\\d+|[?!.]{3,}|@[a-zA-Z0-9_-]+|https?:\/\/[a-zA-Z0-9._/#?-]+|&[a-zA-Z]{2,};")
 
-    clear_sentiments = csv.loc[(csv["sentiment"] == "Positive") | (csv["sentiment"] == "Negative")]
-
-    clear_sentiments = clear_sentiments[["sentiment", "content"]]
-
-    replace_regex = re.compile("[#@]|-+\\s*\\.?\\s*ignore tags\\s*\\.?\\s*-+\\.")
-    clear_sentiments["content"] = clear_sentiments["content"].map(lambda tweet:
+    return tweets.map(lambda tweet:
         word_tokenize(re.sub(replace_regex, "", str(tweet).lower()))
     )
 
-    clear_sentiments["sentiment"] = clear_sentiments["sentiment"].map(lambda sentiment: 1 if sentiment == "Positive" else 0)
+def load_twitter_sentiment_dataset(nrows = None):
+    print("Loading dataset... ", end="", flush=True)
+    csv = pandas.read_csv("dataset/twitter_training.csv", header=None, nrows=nrows)
+    csv.columns = ["id", "entity", "sentiment", "content"]
 
-    x_train, x_test, y_train, y_test = train_test_split(clear_sentiments["content"].values, clear_sentiments["sentiment"].values, stratify=clear_sentiments["sentiment"].values)
+    csv = csv.loc[(csv["sentiment"] == "Positive") | (csv["sentiment"] == "Negative")]
+
+    csv = csv[["sentiment", "content"]]
+
+    csv["sentiment"] = csv["sentiment"].map(lambda sentiment: 1 if sentiment == "Positive" else 0)
+    csv["content"] = clean_tweets(csv["content"])
+
+    x_train, x_test, y_train, y_test = train_test_split(csv["content"].values, csv["sentiment"].values, stratify=csv["sentiment"].values)
+
+    print("Done!")
+
+    return ([x for x in x_train], [x for x in x_test], [y for y in y_train], [y for y in y_test])
+
+def load_twitter1600k_sentiment_dataset(nrows = None):
+    print("Loading dataset... ", end="", flush=True)
+    # Note: nrows cannot be passed here because the values are sorted by their positivity
+    csv = pandas.read_csv("dataset/training.1600000.processed.noemoticon.csv", header=None, encoding="ISO-8859-1")
+    csv.columns = ["sentiment","id","date","flag","user","content"]
+
+    negative = csv.loc[csv["sentiment"] == 0]
+    positive = csv.loc[csv["sentiment"] == 4]
+    if nrows != None:
+        negative = negative.head(nrows // 2)
+        positive = positive.head(nrows // 2)
+
+
+    csv = pandas.concat([negative[["sentiment", "content"]], positive[["sentiment", "content"]]], axis=0)
+
+    csv["sentiment"] = csv["sentiment"] // 4
+    csv["content"] = clean_tweets(csv["content"])
+
+    x_train, x_test, y_train, y_test = train_test_split(csv["content"].values, csv["sentiment"].values, stratify=csv["sentiment"].values)
+
+    print("Done!")
 
     return ([x for x in x_train], [x for x in x_test], [y for y in y_train], [y for y in y_test])
 
@@ -118,28 +149,39 @@ def train_unigram(n_tokens):
 
 def build_word2vec_model(n_tokens):
     model = models.Sequential()
-    model.add(layers.Dense(n_tokens * 25, activation=tf.nn.relu, input_shape=(n_tokens * 25,)))
-    model.add(layers.Dropout(0.25))
-    model.add(layers.Dense(n_tokens * 15 + 30, activation=tf.nn.relu))
-    model.add(layers.Dropout(0.2))
-    model.add(layers.Dense(n_tokens * 5 + 20, activation=tf.nn.relu))
-    model.add(layers.Dropout(0.15))
-    model.add(layers.Dense(n_tokens * 2 + 10, activation=tf.nn.relu))
+    model.add(layers.Conv1D(70, 1, padding="same", activation=tf.nn.swish, input_shape=(n_tokens, 25)))
     model.add(layers.Dropout(0.1))
-    model.add(layers.Dense(10, activation=tf.nn.relu))
+    model.add(layers.Conv1D(150, 3, padding="same", activation=tf.nn.swish))
+    model.add(layers.Dropout(0.33))
+    model.add(layers.Conv1D(100, 3, activation=tf.nn.swish))
+    model.add(layers.Dropout(0.33))
+    # model.add(layers.Conv1D(80, 1, activation=tf.nn.swish))
+    # model.add(layers.Dropout(0.4))
+
+    model.add(layers.Flatten(input_shape=(n_tokens - 2, 20)))
+
+    model.add(layers.Dense((n_tokens - 2) * 80, activation=tf.nn.relu))
+    model.add(layers.Dropout(0.5))
+    model.add(layers.Dense(n_tokens * 40 + 20, activation=tf.nn.relu))
+    model.add(layers.Dropout(0.5))
+    model.add(layers.Dense(n_tokens * 10 + 10, activation=tf.nn.relu))
+    model.add(layers.Dropout(0.2))
+    model.add(layers.Dense(20, activation=tf.nn.relu))
     model.add(layers.Dense(2, activation=tf.nn.softmax))
 
     return model
 
 def filter_tokens(document):
-    return [word for word in document if glove_vectors.has_index_for(word.lower())]
+    regexp = re.compile("[a-zA-Z]")
+    return [word for word in document if (glove_vectors.has_index_for(word.lower()) and bool(re.match(regexp, word)))]
 
 # Returns a modified version of `document`, which retrains all the data, but has matching indices with `filter_tokens`.
 def join_tokens(document):
     result = []
+    regexp = re.compile("[a-zA-Z]")
 
     for word in document:
-        if glove_vectors.has_index_for(word.lower()):
+        if glove_vectors.has_index_for(word.lower()) and bool(re.match(regexp, word)):
             result.append(word)
         elif len(result) > 0:
             result[len(result) - 1] += " " + word
@@ -154,21 +196,27 @@ def get_vectors(document):
         return numpy.array([], dtype="float32")
     return numpy.vstack([glove_vectors.get_vector(word.lower()) for word in document if glove_vectors.has_index_for(word.lower())])
 
-def flatten_vectors(vectors, n_tokens):
+def pad_vectors(vectors, n_tokens):
     length = vectors.shape[0]
     if length < n_tokens:
         return numpy.hstack((
             vectors.reshape((length * 25,)),
             numpy.repeat(0, (n_tokens - length) * 25)
-        ))
+        )).reshape((n_tokens, 25))
     else:
-        return vectors.reshape((n_tokens * 25,))
+        return vectors.reshape((n_tokens, 25))
 
 def augment_vectors(vectors, n_tokens):
     length = vectors.shape[0]
     start = random.randrange(0, max(length - n_tokens, 1))
 
-    return flatten_vectors(vectors[start:(start + n_tokens)], n_tokens)
+    return pad_vectors(vectors[start:(start + n_tokens)], n_tokens)
+
+def augment_vectors_gpu(vectors, n_tokens):
+    length = tf.shape(vectors)[0]
+    start = tf.random.uniform([], 0, length - n_tokens + 1, dtype=tf.dtypes.int32)
+
+    return vectors[start:(start + n_tokens)].to_tensor(shape=[n_tokens, 25])
 
 def evaluate_word2vec_model(model, n_tokens):
     def evaluate(text):
@@ -181,8 +229,8 @@ def evaluate_word2vec_model(model, n_tokens):
         rates = [0.0 for _ in range(len(tokens))]
 
         for start in range(max(len(vectors) - n_tokens + 1, 1)):
-            inputs = flatten_vectors(vectors[start:start + n_tokens], n_tokens)
-            prediction = model(inputs.reshape((1, 25*n_tokens)))[0].numpy()
+            inputs = pad_vectors(vectors[start:start + n_tokens], n_tokens)
+            prediction = model(inputs.reshape((1, n_tokens, 25)))[0].numpy()
             rate = prediction[1] / (prediction[0] + prediction[1])
 
             for offset in range(n_tokens):
@@ -201,31 +249,35 @@ def train_word2vec(dataset, n_tokens = 5):
 
     load_glove()
 
-    def wrap_as_numpy(callback):
-        return lambda tensor: callback(tensor.numpy())
+    # def wrap_as_numpy(callback):
+    #     return lambda tensor: callback(tensor.numpy())
 
-    def wrap_as_numpy2(callback):
-        return lambda tensor, other: callback(tensor.numpy(), other)
+    # def wrap_as_numpy2(callback):
+    #     return lambda tensor, other: callback(tensor.numpy(), other)
 
+    print("Preparing dataset... ", end="", flush=True)
     document_vectors = [get_vectors(filter_tokens(document)) for document in documents_train]
-    # print(document_vectors)
 
     train_dataset = (
         tf.data.Dataset.from_tensor_slices((
-            tf.ragged.constant(document_vectors),
+            tf.ragged.stack(document_vectors),
             categories_train
         ))
-        .filter(lambda vectors, category: tf.py_function(func=wrap_as_numpy(len), inp=[vectors], Tout=tf.int32) >= 3)
+        .filter(lambda vectors, category: tf.shape(vectors)[0] >= n_tokens)
         .map(lambda vectors, category: (
-            tf.py_function(func=wrap_as_numpy2(augment_vectors), inp=[vectors, n_tokens], Tout=tf.float32),
+            augment_vectors_gpu(vectors, n_tokens),
+            # tf.py_function(func=wrap_as_numpy2(augment_vectors), inp=[vectors, n_tokens], Tout=tf.float32),
             tf.one_hot(category, 2)
         ))
+        .shuffle(128, reshuffle_each_iteration=True)
+        .batch(128)
+        .prefetch(buffer_size=tf.data.AUTOTUNE)
     )
 
-    train_dataset = train_dataset.batch(128).prefetch(buffer_size=tf.data.AUTOTUNE)
-
     mapped_documents_test = map(lambda document: augment_vectors(get_vectors(filter_tokens(document)), n_tokens), documents_test)
-    mapped_documents_test = numpy.vstack([x for x in mapped_documents_test])
+    mapped_documents_test = numpy.stack([x for x in mapped_documents_test])
+
+    print("Done!")
 
     model = build_word2vec_model(n_tokens)
 
@@ -235,14 +287,17 @@ def train_word2vec(dataset, n_tokens = 5):
         metrics=["accuracy"]
     )
 
+    mapped_categories_test = numpy.vstack([tf.one_hot(cat, 2) for cat in categories_test])
+
     model.fit(
         train_dataset,
-        epochs=200,
+        epochs=150,
+        validation_data=(mapped_documents_test, mapped_categories_test)
     )
 
     model.save_weights(f"training/final_{n_tokens}.ckpt")
 
-    loss, accuracy = model.evaluate(mapped_documents_test, numpy.vstack([tf.one_hot(cat, 2) for cat in categories_test]))
+    loss, accuracy = model.evaluate(mapped_documents_test, mapped_categories_test)
     print(f"Loss: {loss}, accuracy: {accuracy}")
 
     return (evaluate_word2vec_model(model, n_tokens), model)
@@ -259,7 +314,7 @@ def pretty_print_word2vec(generator, text):
     red = numpy.array([1.0, 0.1, 0.2])
     green = numpy.array([0.1, 1.0, 0.2])
     gray = numpy.array([0.7, 0.7, 0.7])
-    spaceless_tokens = ["'ve", "n't", ".", ",", "!", "?"]
+    spaceless_tokens = ["'ve", "n't", "'m", "'re", "'s", ".", ",", "!", "?"]
 
     def blend(left, right, amount):
         return left * (1.0 - amount) + right * amount
@@ -281,9 +336,10 @@ def pretty_print_word2vec(generator, text):
     print()
 
 if __name__ == "__main__":
-    # evaluate, model = train_word2vec(load_twitter_sentiment_dataset(), n_tokens=5)
-    # evaluate, model = train_word2vec(load_subjective_dataset(5000))
-    evaluate, model = load_word2vec_model(n_tokens=5)
+    # evaluate, model = train_word2vec(load_twitter1600k_sentiment_dataset(800000), n_tokens=7)
+    evaluate, model = train_word2vec(load_twitter_sentiment_dataset(), n_tokens=5)
+    # evaluate, model = train_word2vec(load_subjective_dataset(100))
+    # evaluate, model = load_word2vec_model(n_tokens=5)
 
     try:
         text = input("> ")
@@ -291,4 +347,6 @@ if __name__ == "__main__":
             pretty_print_word2vec(evaluate, text)
             text = input("> ")
     except EOFError:
+        pass
+    except KeyboardInterrupt:
         pass
