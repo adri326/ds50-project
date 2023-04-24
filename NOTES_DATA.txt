@@ -1,0 +1,18 @@
+Numéro d'urgence: 999 -> changer en 18 + changer "your emergency number" en 18 (présent des fois)
+vérifier la traduction des abréviations (BMI -> IMC, GP (general practicioner) -> jsp frr, etc...)
+Une question: une réponse
+
+FORMAT DES FICHIERS:
+#URL:https://example.com/
+
+
+question principale? question alternative?
+réponse
+sur plusieurs lignes
+
+toujours la réponse (v saut de 2 lignes pour indiquer la fin de la réponse v)
+
+
+autre question principale? autre question alternative?
+réponse
+...
