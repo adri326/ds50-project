@@ -148,28 +148,52 @@ def train_unigram(n_tokens):
 
 
 def build_word2vec_model(n_tokens):
-    model = models.Sequential()
-    model.add(layers.Conv1D(70, 1, padding="same", activation=tf.nn.swish, input_shape=(n_tokens, 25)))
-    model.add(layers.Dropout(0.1))
-    model.add(layers.Conv1D(150, 3, padding="same", activation=tf.nn.swish))
-    model.add(layers.Dropout(0.33))
-    model.add(layers.Conv1D(100, 3, activation=tf.nn.swish))
-    model.add(layers.Dropout(0.33))
-    # model.add(layers.Conv1D(80, 1, activation=tf.nn.swish))
-    # model.add(layers.Dropout(0.4))
+    if n_tokens == 7:
+        model = models.Sequential()
+        model.add(layers.Conv1D(70, 1, padding="same", activation=tf.nn.swish, input_shape=(n_tokens, 25)))
+        model.add(layers.Dropout(0.1))
+        model.add(layers.Conv1D(150, 3, padding="same", activation=tf.nn.swish))
+        model.add(layers.Dropout(0.33))
+        model.add(layers.Conv1D(100, 3, activation=tf.nn.swish))
+        model.add(layers.Dropout(0.33))
+        # model.add(layers.Conv1D(80, 1, activation=tf.nn.swish))
+        # model.add(layers.Dropout(0.4))
 
-    model.add(layers.Flatten(input_shape=(n_tokens - 2, 20)))
+        model.add(layers.Flatten(input_shape=(n_tokens - 2, 20)))
 
-    model.add(layers.Dense((n_tokens - 2) * 80, activation=tf.nn.relu))
-    model.add(layers.Dropout(0.5))
-    model.add(layers.Dense(n_tokens * 40 + 20, activation=tf.nn.relu))
-    model.add(layers.Dropout(0.5))
-    model.add(layers.Dense(n_tokens * 10 + 10, activation=tf.nn.relu))
-    model.add(layers.Dropout(0.2))
-    model.add(layers.Dense(20, activation=tf.nn.relu))
-    model.add(layers.Dense(2, activation=tf.nn.softmax))
+        model.add(layers.Dense((n_tokens - 2) * 80, activation=tf.nn.relu))
+        model.add(layers.Dropout(0.5))
+        model.add(layers.Dense(n_tokens * 40 + 20, activation=tf.nn.relu))
+        model.add(layers.Dropout(0.5))
+        model.add(layers.Dense(n_tokens * 10 + 10, activation=tf.nn.relu))
+        model.add(layers.Dropout(0.2))
+        model.add(layers.Dense(20, activation=tf.nn.relu))
+        model.add(layers.Dense(2, activation=tf.nn.softmax))
 
-    return model
+        return model
+    else:
+        model = models.Sequential()
+        model.add(layers.Conv1D(75, 3, padding="same", activation=tf.nn.swish, input_shape=(n_tokens, 25)))
+        model.add(layers.SpatialDropout1D(0.33))
+        model.add(layers.Conv1D(75, 3, padding="same", activation=tf.nn.swish))
+        model.add(layers.MaxPool1D(strides=2, padding="same"))
+        model.add(layers.SpatialDropout1D(0.33))
+        model.add(layers.Conv1D(150, 3, padding="same", activation=tf.nn.swish))
+        model.add(layers.SpatialDropout1D(0.33))
+        model.add(layers.Conv1D(150, 3, padding="same", activation=tf.nn.swish))
+
+        model.add(layers.Flatten(input_shape=(n_tokens // 2, 150)))
+
+        model.add(layers.Dense(n_tokens * 80, activation=tf.nn.relu))
+        model.add(layers.Dropout(0.5))
+        model.add(layers.Dense(n_tokens * 40 + 20, activation=tf.nn.relu))
+        model.add(layers.Dropout(0.5))
+        model.add(layers.Dense(n_tokens * 10 + 10, activation=tf.nn.relu))
+        model.add(layers.Dropout(0.2))
+        model.add(layers.Dense(20, activation=tf.nn.relu))
+        model.add(layers.Dense(2, activation=tf.nn.softmax))
+
+        return model
 
 def filter_tokens(document):
     regexp = re.compile("[a-zA-Z]")
@@ -192,9 +216,13 @@ def join_tokens(document):
     return result
 
 def get_vectors(document):
-    if len(document) == 0:
-        return numpy.array([], dtype="float32")
-    return numpy.vstack([glove_vectors.get_vector(word.lower()) for word in document if glove_vectors.has_index_for(word.lower())])
+    vectors = [glove_vectors.get_vector(word.lower()) for word in document if glove_vectors.has_index_for(word.lower())]
+
+    # Tensorflow does not want to work today it seems
+    if len(vectors) == 0:
+        return numpy.array([], dtype="float32").reshape((0, 25))
+
+    return numpy.vstack(vectors, dtype="float32").reshape((len(vectors), 25))
 
 def pad_vectors(vectors, n_tokens):
     length = vectors.shape[0]
@@ -291,7 +319,7 @@ def train_word2vec(dataset, n_tokens = 5):
 
     model.fit(
         train_dataset,
-        epochs=150,
+        epochs=50,
         validation_data=(mapped_documents_test, mapped_categories_test)
     )
 
@@ -336,10 +364,10 @@ def pretty_print_word2vec(generator, text):
     print()
 
 if __name__ == "__main__":
-    # evaluate, model = train_word2vec(load_twitter1600k_sentiment_dataset(800000), n_tokens=7)
-    evaluate, model = train_word2vec(load_twitter_sentiment_dataset(), n_tokens=5)
+    # evaluate, model = train_word2vec(load_twitter1600k_sentiment_dataset(200000), n_tokens=6)
+    evaluate, model = train_word2vec(load_twitter_sentiment_dataset(), n_tokens=6)
     # evaluate, model = train_word2vec(load_subjective_dataset(100))
-    # evaluate, model = load_word2vec_model(n_tokens=5)
+    # evaluate, model = load_word2vec_model(n_tokens=7)
 
     try:
         text = input("> ")
