@@ -137,9 +137,7 @@ def get_response(intents_list, intents_json):
     for i in list_of_intents:
         if i["tag"] == tag:
             result = random.choice(i["responses"])
-            break
-    return result
-
+            return result
 
 
 
