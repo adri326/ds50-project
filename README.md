@@ -11,6 +11,11 @@ git clone https://github.com/adri326/ds50-project
 cd ds50-project
 ```
 
+```sh
+# Only needs to be run once per user
+git lfs install
+```
+
 I recommend you use conda to install packages in a different environment.
 
 ```sh
