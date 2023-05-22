@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2694fb4a-8f57-46a9-8b94-2e60c0a7e467" name="Changes" comment="First commit gpt2">
-      <change beforePath="$PROJECT_DIR$/fine_tune.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/fine_tune.ipynb" afterDir="false" />
+    <list default="true" id="2694fb4a-8f57-46a9-8b94-2e60c0a7e467" name="Changes" comment="fine">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,6 +63,7 @@
       <workItem from="1683231386817" duration="622000" />
       <workItem from="1683716606580" duration="66000" />
       <workItem from="1683721975131" duration="936000" />
+      <workItem from="1684763852982" duration="8000" />
     </task>
     <task id="LOCAL-00001" summary="First commit Bob">
       <created>1682671849914</created>
