@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="22691ebb-b219-45b9-b666-d92cc07fcf51" name="Changes" comment="similarity ça marche trop bien">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nltkSimilarite/sementicSimilarity.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/nltkSimilarite/sementicSimilarity.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nltkSimilarite/similarityDataset.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/nltkSimilarite/similarityDataset.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,29 +49,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Python.chatbotV2">
-    <configuration name="chatbot2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="ds50-project" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/nltkSimilarite" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/nltkSimilarite/chatbot2.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager">
     <configuration name="chatbotV2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="ds50-project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -99,7 +75,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.chatbotV2" />
-        <item itemvalue="Python.chatbot2" />
       </list>
     </recent_temporary>
   </component>
@@ -132,6 +107,12 @@
       <workItem from="1684941381636" duration="1093000" />
       <workItem from="1685263668449" duration="497000" />
       <workItem from="1685605944772" duration="324000" />
+      <workItem from="1685623528797" duration="612000" />
+      <workItem from="1685651476178" duration="530000" />
+      <workItem from="1685652009867" duration="821000" />
+      <workItem from="1685652851642" duration="46000" />
+      <workItem from="1685652900862" duration="169000" />
+      <workItem from="1685653085350" duration="792000" />
     </task>
     <task id="LOCAL-00001" summary="First commit Bob">
       <created>1682671849914</created>
