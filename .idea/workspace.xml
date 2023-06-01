@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="22691ebb-b219-45b9-b666-d92cc07fcf51" name="Changes" comment="similarity ça marche trop bien">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nltkSimilarite/sementicSimilarity.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/nltkSimilarite/sementicSimilarity.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/nltkSimilarite/similarityDataset.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/nltkSimilarite/similarityDataset.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,6 +131,7 @@
       <workItem from="1684939271523" duration="1200000" />
       <workItem from="1684941381636" duration="1093000" />
       <workItem from="1685263668449" duration="497000" />
+      <workItem from="1685605944772" duration="324000" />
     </task>
     <task id="LOCAL-00001" summary="First commit Bob">
       <created>1682671849914</created>
@@ -222,7 +225,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ds50_project$chatbotV2.coverage" NAME="chatbotV2 Coverage Results" MODIFIED="1684790614140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/nltkSimilarite" />
-    <SUITE FILE_PATH="coverage/ds50_project$server.coverage" NAME="server Coverage Results" MODIFIED="1684770719313" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Bob" />
+    <SUITE FILE_PATH="coverage/ds50_project$server.coverage" NAME="server Coverage Results" MODIFIED="1685266409083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Bob" />
     <SUITE FILE_PATH="coverage/ds50_project$chatbot2.coverage" NAME="chatbot2 Coverage Results" MODIFIED="1684787904193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/nltkSimilarite" />
     <SUITE FILE_PATH="coverage/ds50_project$chatbot.coverage" NAME="chatbot Coverage Results" MODIFIED="1684790048178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/nltkSimilarite" />
     <SUITE FILE_PATH="coverage/ds50_project$test.coverage" NAME="test Coverage Results" MODIFIED="1684770093116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Bob" />
