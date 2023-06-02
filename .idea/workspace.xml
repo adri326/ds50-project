@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="22691ebb-b219-45b9-b666-d92cc07fcf51" name="Changes" comment="similarity avec notre dataset de 5 questions (6 avec l'initiale)">
-      <change afterPath="$PROJECT_DIR$/src/nltkSimilarite/question_sans_reponse.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/nltkSimilarite/similarityDataset_5Q.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/src/nltkSimilarite/similarityDataset_5Q.ipynb" afterDir="false" />
-    </list>
+    <list default="true" id="22691ebb-b219-45b9-b666-d92cc07fcf51" name="Changes" comment="il faut intégrer chatgpt" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,7 +112,7 @@
       <workItem from="1685652900862" duration="169000" />
       <workItem from="1685653085350" duration="1340000" />
       <workItem from="1685654507260" duration="16000" />
-      <workItem from="1685695194733" duration="1106000" />
+      <workItem from="1685695194733" duration="1329000" />
     </task>
     <task id="LOCAL-00001" summary="First commit Bob">
       <created>1682671849914</created>
@@ -202,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685654385122</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="il faut intégrer chatgpt">
+      <created>1685696323196</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1685696323196</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,7 +232,8 @@
     <MESSAGE value="similarity ça marche trop bien" />
     <MESSAGE value="similarity avec notre dataset" />
     <MESSAGE value="similarity avec notre dataset de 5 questions (6 avec l'initiale)" />
-    <option name="LAST_COMMIT_MESSAGE" value="similarity avec notre dataset de 5 questions (6 avec l'initiale)" />
+    <MESSAGE value="il faut intégrer chatgpt" />
+    <option name="LAST_COMMIT_MESSAGE" value="il faut intégrer chatgpt" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ds50_project$chatbotV2.coverage" NAME="chatbotV2 Coverage Results" MODIFIED="1684790614140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/nltkSimilarite" />
