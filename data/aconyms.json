@@ -1,21 +1,5 @@
 [
-    [
-        "SQFT"
-    ],
-    [
-        "RPC"
-    ],
-    [
-        "HRT",
-        "DVT",
-        "THS",
-        "TVP"
-    ],
-    [
-        "BHFfunded",
-        "lIRM",
-        "BHF"
-    ],
+    [],
     [
         "DPC"
     ],

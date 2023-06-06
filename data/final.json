@@ -3243,7 +3243,7 @@
             "Is it realistic to expect a normal quality of life with LQTS?"
         ],
         "a_EN": "With regular check-ups and treatment, you can continue to live a normal and active life. However, you should be aware that:\n- if you need an ICD or pacemaker, there may be things to plan for, such as not driving for a little while after having it fitted\n- you may have to give up some competitive sports, but your doctor can advise you on physical activity which comes with less risk\n- you may have to take potassium supplements prescribed by your doctor or increase the amount of potassium-rich food in your diet\n- some over-the-counter medicines or supplements can increase your symptoms so you should discuss these with your doctor and pharmacist before taking them\n- prolonged (longer than a day) or severe episodes of vomiting or diarrhoea can affect your sodium and potassium levels. You should discuss this with your doctor who may wish to prescribe oral rehydration supplements. These supplements can help to replenish sodium and potassium levels but should be used under medical supervision.",
-        "q_FR": "Puis-je mener une vie normale avec le SQFT ?",
+        "q_FR": "Puis-je mener une vie normale avec le STLQ ?",
         "qs_FR": [
             "Est-il possible de mener une vie normale avec le LQTS ?",
             "Les personnes atteintes de LQTS peuvent-elles avoir un mode de vie normal ?",
@@ -3311,9 +3311,9 @@
         "a_EN": "CPR stands for cardiopulmonary resuscitation. It\u2019s when someone gives chest compressions to a person in cardiac arrest to keep them alive.  \n\nWhen a person is in cardiac arrest their heart stops pumping blood, which means their brain gets no oxygen.  \n\nWithout CPR the person will die in minutes. CPR keeps the heart pumping blood around the body until emergency help arrives.",
         "q_FR": "Qu'est-ce que la r\u00e9animation cardio-pulmonaire et comment fonctionne-t-elle ?",
         "qs_FR": [
-            "Quelle est la d\u00e9finition de la RPC et quel est son m\u00e9canisme d'action ?",
+            "Quelle est la d\u00e9finition de la RCP et quel est son m\u00e9canisme d'action ?",
             "Comment d\u00e9cririez-vous la RCP et son fonctionnement ?",
-            "En quoi consiste la RPC et quel est son processus op\u00e9rationnel ?",
+            "En quoi consiste la RCP et quel est son processus op\u00e9rationnel ?",
             "Quelle est la raison d'\u00eatre de la r\u00e9animation cardio-pulmonaire et comment fonctionne-t-elle ?",
             "Comment d\u00e9finir le CPR et quels sont ses m\u00e9canismes ?"
         ],
@@ -3713,7 +3713,7 @@
             "Quelles sont les proc\u00e9dures utilis\u00e9es pour diagnostiquer la myocardite ?",
             "Comment la myocardite est-elle g\u00e9n\u00e9ralement diagnostiqu\u00e9e par les professionnels de sant\u00e9 ?"
         ],
-        "a_FR": "Votre m\u00e9decin vous examinera physiquement et vous posera des questions, y compris des informations importantes telles que\n\n- les maladies r\u00e9centes,\n- les ant\u00e9c\u00e9dents de probl\u00e8mes auto-immuns\n- l'exposition \u00e0 des toxines ou \u00e0 des m\u00e9dicaments\n- d'autres facteurs de risque, par exemple si vous avez r\u00e9cemment accouch\u00e9.\n\nIl se peut que vous passiez des examens, notamment\n\n- un ECG (\u00e9lectrocardiogramme)\n- un \u00e9cho (\u00e9chocardiogramme)\n- une radiographie du thorax\n- des analyses de sang.\n\nCes examens aideront votre m\u00e9decin \u00e0 \u00e9tablir un diagnostic.Ces examens sont tr\u00e8s courants, ne prennent pas beaucoup de temps (parfois quelques minutes seulement) et la plupart des gens ne ressentent aucune douleur ou g\u00eane lorsqu'ils les subissent.D'autres examens, tels que l'IRM cardiaque et l'angiographie coronaire, peuvent \u00eatre effectu\u00e9s pour \u00e9liminer d'autres causes cardiaques courantes.\n\nDans de tr\u00e8s rares cas, une biopsie cardiaque peut \u00eatre envisag\u00e9e. Le m\u00e9decin pr\u00e9l\u00e8ve alors un \u00e9chantillon de tissu du muscle cardiaque (myocarde) pour l'analyser.\n\nDes chercheurs financ\u00e9s par la BHF sont en train de mettre au point le tout premier test sanguin pour la myocardite, qui, esp\u00e8rent-ils, permettra un diagnostic rapide.",
+        "a_FR": "Votre m\u00e9decin vous examinera physiquement et vous posera des questions, y compris des informations importantes telles que\n\n- les maladies r\u00e9centes,\n- les ant\u00e9c\u00e9dents de probl\u00e8mes auto-immuns\n- l'exposition \u00e0 des toxines ou \u00e0 des m\u00e9dicaments\n- d'autres facteurs de risque, par exemple si vous avez r\u00e9cemment accouch\u00e9.\n\nIl se peut que vous passiez des examens, notamment\n\n- un ECG (\u00e9lectrocardiogramme)\n- un \u00e9cho (\u00e9chocardiogramme)\n- une radiographie du thorax\n- des analyses de sang.\n\nCes examens aideront votre m\u00e9decin \u00e0 \u00e9tablir un diagnostic.Ces examens sont tr\u00e8s courants, ne prennent pas beaucoup de temps (parfois quelques minutes seulement) et la plupart des gens ne ressentent aucune douleur ou g\u00eane lorsqu'ils les subissent.D'autres examens, tels que l'IRM cardiaque et l'angiographie coronaire, peuvent \u00eatre effectu\u00e9s pour \u00e9liminer d'autres causes cardiaques courantes.\n\nDans de tr\u00e8s rares cas, une biopsie cardiaque peut \u00eatre envisag\u00e9e. Le m\u00e9decin pr\u00e9l\u00e8ve alors un \u00e9chantillon de tissu du muscle cardiaque (myocarde) pour l'analyser.\n\nDes chercheurs financ\u00e9s par la British Heart Foundation sont en train de mettre au point le tout premier test sanguin pour la myocardite, qui, esp\u00e8rent-ils, permettra un diagnostic rapide.",
         "URL": "https://www.bhf.org.uk/informationsupport/conditions/myocarditis",
         "Name": "myocarditis"
     },
@@ -8355,7 +8355,7 @@
             "Quels sont les risques connus ou les r\u00e9sultats ind\u00e9sirables li\u00e9s aux m\u00e9dicaments \u00e0 base de statines ?",
             "Quelles sont les cons\u00e9quences ou r\u00e9actions n\u00e9gatives potentielles d'un traitement par statines ?"
         ],
-        "a_FR": "Comme tous les m\u00e9dicaments, les statines peuvent avoir des effets secondaires. Les plus courants sont des douleurs musculaires, mais de nombreuses personnes ne ressentent aucun effet secondaire.\n\nUne \u00e9tude r\u00e9cente financ\u00e9e par la BHF a montr\u00e9 que si les statines sont li\u00e9es \u00e0 une l\u00e9g\u00e8re augmentation du risque de douleurs ou de faiblesses musculaires, elles ne provoquent pas la majorit\u00e9 des sympt\u00f4mes de douleurs musculaires qui leur sont g\u00e9n\u00e9ralement associ\u00e9s.\n\nSi vous ressentez des effets secondaires, ou si ceux-ci changent ou s'aggravent, parlez-en \u00e0 votre m\u00e9decin g\u00e9n\u00e9raliste.",
+        "a_FR": "Comme tous les m\u00e9dicaments, les statines peuvent avoir des effets secondaires. Les plus courants sont des douleurs musculaires, mais de nombreuses personnes ne ressentent aucun effet secondaire.\n\nUne \u00e9tude r\u00e9cente financ\u00e9e par la British Heart Foundation a montr\u00e9 que si les statines sont li\u00e9es \u00e0 une l\u00e9g\u00e8re augmentation du risque de douleurs ou de faiblesses musculaires, elles ne provoquent pas la majorit\u00e9 des sympt\u00f4mes de douleurs musculaires qui leur sont g\u00e9n\u00e9ralement associ\u00e9s.\n\nSi vous ressentez des effets secondaires, ou si ceux-ci changent ou s'aggravent, parlez-en \u00e0 votre m\u00e9decin g\u00e9n\u00e9raliste.",
         "URL": "https://www.bhf.org.uk/informationsupport/treatments/statins",
         "Name": "statins"
     },
