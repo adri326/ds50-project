@@ -78,27 +78,183 @@
         "FR": ""
     },
     {
-        "EN": "",
-        "FR": ""
+        "EN": "PCCD",
+        "EN_expand" : "Progressive cardiac conduction defect", 
+        "FR": "DCCP",
+        "FR_expand" : "Défaut de conduction cardiaque progressif"
+    },
+    {
+        "EN": "GIS",
+        "EN_expand" : "Genetic Information Service", 
+        "FR": "Service d'information génétique",
+        "FR_expand" : "SIG"
+    },
+    {
+        "EN": "SCAD",
+        "EN_expand" : "Spontaneous coronary artery dissection", 
+        "FR": "DSAC",
+        "FR_expand" : "Dissection spontanée de l'artère coronaire"
+    },
+    {
+        "EN": "WPW",
+        "EN_expand" : "Wolff-Parkinson-White", 
+        "FR": "WPW",
+        "FR_expand" : "Wolff-Parkinson-White"
+    },
+    {
+        "EN": "ECG",
+        "EN_expand" : "electrocardiogram", 
+        "FR": "ECG",
+        "FR_expand" : "electrocardiogramme"
+    },
+    {
+        "EN": "THR",
+        "EN_expand" : "target heart rate", 
+        "FR": "FCC",
+        "FR_expand" : "fréquence cardiaque cible"
+    },
+    {
+        "EN": "FBC",
+        "EN_expand" : "full blood count", 
+        "FR": "AFSC",
+        "FR_expand" : "analyse de la formule sanguine complète"
+    },
+    {
+        "EN": "BNP",
+        "EN_expand" : "B-type natriuretic peptides", 
+        "FR": "PNTB",
+        "FR_expand" : "Peptides natriurétiques de type B"
+    },
+    {
+        "EN": "MRI",
+        "EN_expand" : "magnetic resonance imaging", 
+        "FR": "IRM",
+        "FR_expand" : "image  à raisonance magnétique"
+    },
+    {
+        "EN": "IRL",
+        "EN_expand" : "implantable loop recorder", 
+        "FR": "MCI",
+        "FR_expand" : "moniteur cardiaque implantable"
+    },
+    {
+        "EN": "TTE",
+        "EN_expand" : "transthoracic echo", 
+        "FR": "ETT",
+        "FR_expand" : "écho transthoracique"
+    },
+    {
+        "EN": "TOE",
+        "EN_expand" : "*transoesophageal echocardiogram", 
+        "FR": "échocardiographie transoesophagienne",
+        "FR_expand" : "ETO"
+    },
+    {
+        "EN": "TIA",
+        "EN_expand" : "transient ischaemic attacks", 
+        "FR": "AVC",
+        "FR_expand" : "accidents vasculaire cérebrale"
+    },
+    {
+        "EN": "IHC",
+        "EN_expand" : "inherited heart condition", 
+        "FR": "MCH",
+        "FR_expand" : "maladie cardiaque héréditaire"
+    },
+    {
+        "EN": "MIBI",
+        "EN_expand" : "methoxyisobutylisonitrile", 
+        "FR": "MIBI",
+        "FR_expand" : "methoxyisobutylisonitrile"
     },
     {
         "EN": "",
-        "FR": ""
+        "EN_expand" : "", 
+        "FR": "",
+        "FR_expand" : ""
     },
     {
         "EN": "",
-        "FR": ""
+        "EN_expand" : "", 
+        "FR": "",
+        "FR_expand" : ""
     },
     {
         "EN": "",
-        "FR": ""
+        "EN_expand" : "", 
+        "FR": "",
+        "FR_expand" : ""
     },
     {
         "EN": "",
-        "FR": ""
+        "EN_expand" : "", 
+        "FR": "",
+        "FR_expand" : ""
     },
     {
         "EN": "",
-        "FR": ""
-    }
+        "EN_expand" : "", 
+        "FR": "",
+        "FR_expand" : ""
+    },
+    {
+        "EN": "",
+        "EN_expand" : "", 
+        "FR": "",
+        "FR_expand" : ""
+    },
+    {
+        "EN": "",
+        "EN_expand" : "", 
+        "FR": "",
+        "FR_expand" : ""
+    },
+    {
+        "EN": "",
+        "EN_expand" : "", 
+        "FR": "",
+        "FR_expand" : ""
+    },
+    {
+        "EN": "",
+        "EN_expand" : "", 
+        "FR": "",
+        "FR_expand" : ""
+    },
+    {
+        "EN": "",
+        "EN_expand" : "", 
+        "FR": "",
+        "FR_expand" : ""
+    },
+    {
+        "EN": "",
+        "EN_expand" : "", 
+        "FR": "",
+        "FR_expand" : ""
+    },
+    {
+        "EN": "",
+        "EN_expand" : "", 
+        "FR": "",
+        "FR_expand" : ""
+    },
+    {
+        "EN": "",
+        "EN_expand" : "", 
+        "FR": "",
+        "FR_expand" : ""
+    },
+    {
+        "EN": "",
+        "EN_expand" : "", 
+        "FR": "",
+        "FR_expand" : ""
+    },
+    {
+        "EN": "",
+        "EN_expand" : "", 
+        "FR": "",
+        "FR_expand" : ""
+    },
 ]
