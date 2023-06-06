@@ -1,0 +1,104 @@
+[
+    {
+        "EN": "CPVT",
+        "FR": "TVPC"
+    },
+    {
+        "EN": "ICD",
+        "FR": "DAI"
+    },
+    {
+        "EN": "DVLA",
+        "FR": "ANTS",
+        "EN_def": "la Driver and Vehicle Licensing Agency",
+        "FR_def": "l'Agence Nationale des Titres Sécurisés"
+    },
+    {
+        "EN": "ACM",
+        "FR": "MCA"
+    },
+    {
+        "EN": "ARVD",
+        "FR": "DVDA"
+    },
+    {
+        "EN": "NOAC",
+        "FR": "NACO"
+    },
+    {
+        "EN": "999",
+        "FR": "112"
+    },
+    {
+        "EN": "CPR",
+        "FR": "RCP"
+    },
+    {
+        "EN": "HCM",
+        "FR": "CMH"
+    },
+    {
+        "EN": "DCM",
+        "FR": "CMD"
+    },
+    {
+        "EN": "SADS",
+        "FR": "MSOC"
+    },
+    {
+        "EN": "CVD",
+        "FR": "MCV"
+    },
+    {
+        "EN": "CCU",
+        "FR": "USC"
+    },
+    {
+        "EN": "ARB",
+        "FR": "ARA"
+    },
+    {
+        "EN": "GTN",
+        "FR": "NTG"
+    },
+    {
+        "EN": "HFpEF",
+        "FR": "ICFP"
+    },
+    {
+        "EN": "LQTS",
+        "FR": "STLQ"
+    },
+    {
+        "EN": "",
+        "FR": ""
+    },
+    {
+        "EN": "",
+        "FR": ""
+    },
+    {
+        "EN": "",
+        "FR": ""
+    },
+    {
+        "EN": "",
+        "FR": ""
+    },
+    {
+        "EN": "",
+        "FR": ""
+    },
+    {
+        "EN": "",
+        "FR": ""
+    },
+    {
+        "EN": "",
+        "FR": ""
+    },
+    {
+        "EN": "",
+        "FR": ""
+    }
+]
