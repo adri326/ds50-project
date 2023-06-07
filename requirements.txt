@@ -1,0 +1,7 @@
+python-ulid
+numpy
+nltk
+scikit-learn
+gensim
+pandas
+tensorflow
