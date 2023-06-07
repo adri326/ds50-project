@@ -1,81 +1,111 @@
 [
     {
         "EN": "CPVT",
-        "FR": "TVPC"
+        "EN_expand" : "", 
+        "FR": "TVPC",
+        "FR_expand" : ""
     },
     {
         "EN": "ICD",
-        "FR": "DAI"
+        "EN_expand" : "implantable cardioverter defibrillator", 
+        "FR": "DAI",
+        "FR_expand" : "d\u00e9fibrillateur cardioverteur implantable"
     },
     {
         "EN": "DVLA",
+        "EN_expand" : "Driver and Vehicle Licensing Agency", 
         "FR": "ANTS",
-        "EN_def": "la Driver and Vehicle Licensing Agency",
-        "FR_def": "l'Agence Nationale des Titres Sécurisés"
+        "FR_expand" : "Agence Nationale des Titres Sécurisés"
     },
     {
         "EN": "ACM",
-        "FR": "MCA"
+        "EN_expand" : "arrhythmogenic cardiomyopathy", 
+        "FR": "MCA",
+        "FR_expand" : "cardiomyopathie arythmog\u00e8ne"
     },
     {
         "EN": "ARVD",
-        "FR": "DVDA"
+        "EN_expand" : "arrhythmogenic right ventricular dysplasia", 
+        "FR": "DVDA",
+        "FR_expand" : "dysplasie ventriculaire droite arythmog\u00e8ne"
     },
     {
         "EN": "NOAC",
-        "FR": "NACO"
+        "EN_expand" : "", 
+        "FR": "NACO",
+        "FR_expand" : ""
     },
     {
         "EN": "999",
-        "FR": "112"
+        "EN_expand" : "", 
+        "FR": "112",
+        "FR_expand" : ""
     },
     {
         "EN": "CPR",
-        "FR": "RCP"
+        "EN_expand" : "", 
+        "FR": "RCP",
+        "FR_expand" : ""
     },
     {
         "EN": "HCM",
-        "FR": "CMH"
+        "EN_expand" : "Hypertrophic cardiomyopathy", 
+        "FR": "CMH",
+        "FR_expand" : ""
     },
     {
         "EN": "DCM",
-        "FR": "CMD"
+        "EN_expand" : "", 
+        "FR": "CMD",
+        "FR_expand" : "cardiomyopathie hypertrophique"
     },
     {
         "EN": "SADS",
-        "FR": "MSOC"
+        "EN_expand" : "sudden arrhythmic death", 
+        "FR": "MSOC",
+        "FR_expand" : "risque de mort arythmique soudaine"
     },
     {
         "EN": "CVD",
-        "FR": "MCV"
+        "EN_expand" : "", 
+        "FR": "MCV",
+        "FR_expand" : ""
     },
     {
         "EN": "CCU",
-        "FR": "USC"
+        "EN_expand" : "coronary care unit", 
+        "FR": "USC",
+        "FR_expand" : "unit\u00e9 de soins coronariens"
     },
     {
         "EN": "ARB",
-        "FR": "ARA"
+        "EN_expand" : "angiotensin receptor blockers)", 
+        "FR": "ARA",
+        "FR_expand" : "antagonistes des r\u00e9cepteurs de l'angiotensine"
     },
     {
         "EN": "GTN",
-        "FR": "NTG"
+        "EN_expand" : "glyceryl trinitrate", 
+        "FR": "NTG",
+        "FR_expand" : "glyceryl trinitrate"
     },
     {
         "EN": "HFpEF",
-        "FR": "ICFP"
+        "EN_expand" : "heart failure with preserved ejection fraction", 
+        "FR": "ICFP",
+        "FR_expand" : "insuffisance cardiaque \u00e0 fraction d'\u00e9jection pr\u00e9serv\u00e9e"
     },
     {
         "EN": "LQTS",
-        "FR": "STLQ"
+        "EN_expand" : "", 
+        "FR": "STLQ",
+        "FR_expand" : ""
     },
     {
         "EN": "HRT",
-        "FR": "THS"
-    },
-    {
-        "EN": "",
-        "FR": ""
+        "EN_expand" : "hormone replacement therapy", 
+        "FR": "THS",
+        "FR_expand" : "traitement hormonal substitutif"
     },
     {
         "EN": "PCCD",
@@ -168,93 +198,105 @@
         "FR_expand" : "methoxyisobutylisonitrile"
     },
     {
-        "EN": "",
+        "EN": "MPS",
+        "EN_expand" : "monopersulfate", 
+        "FR": "MPS",
+        "FR_expand" : "monopersulfate"
+    },
+    {
+        "EN": "LVAD",
+        "EN_expand" : "left ventricular assist device", 
+        "FR": "dispositif d'assistance ventriculaire gauche",
+        "FR_expand" : "DAVG"
+    },
+    {
+        "EN": "TAVI",
+        "EN_expand" : "transcatheter aortic valve implantation", 
+        "FR": "ITVA",
+        "FR_expand" : "implantation transcatheter de la valve aortique"
+    },
+    {
+        "EN": "TIA",
+        "EN_expand" : "transient ischaemic attacks", 
+        "FR": "AIT",
+        "FR_expand" : "accident ischémique transitoire"
+    },
+    {
+        "EN": "SICD",
+        "EN_expand" : "subcutaneous implantable cardioverter defibrillator", 
+        "FR": "DAI-SIC",
+        "FR_expand" : "d\u00e9fibrillateur sous-cutan cardioverteur implantable"
+    },
+    {
+        "EN": "TENS",
         "EN_expand" : "", 
-        "FR": "",
+        "FR": "TENS",
         "FR_expand" : ""
     },
     {
-        "EN": "",
+        "EN": "ARNi",
+        "EN_expand" : "angiotensin-II receptor-neprilysin inhibitor", 
+        "FR": "IRAN",
+        "FR_expand" : "inhibiteur du r\u00e9cepteur de l'angiotensine II et de la n\u00e9prilysine"
+    },
+    {
+        "EN": "CRT",
+        "EN_expand" : "cardiac resynchronisation therapy", 
+        "FR": "SRC",
+        "FR_expand" : "stimulateur de resynchronisation cardiaque"
+    },
+    {
+        "EN": "HDL",
+        "EN_expand" : "high-density lipoproteins", 
+        "FR": "LHD",
+        "FR_expand" : "lipoprot\u00e9ines de haute densit\u00e9"
+    },
+    {
+        "EN": "TAVR",
+        "EN_expand" : "Transcatheter aortic valve replacement", 
+        "FR": "RTVA",
+        "FR_expand" : "remplacement transcath\u00e9ter de la valve aortique"
+    },
+    {
+        "EN": "PAD",
+        "EN_expand" : "peripheral arterial disease", 
+        "FR": "MAP",
+        "FR_expand" : "maladie art\u00e9rielle p\u00e9riph\u00e9rique"
+    },
+    {
+        "EN": "PCI",
+        "EN_expand" : "percutaneous coronary intervention", 
+        "FR": "ICP",
+        "FR_expand" : "intervention coronaire percutan\u00e9e"
+    },
+    {
+        "EN": "FITT",
         "EN_expand" : "", 
-        "FR": "",
+        "FR": "FITT",
         "FR_expand" : ""
     },
     {
-        "EN": "",
-        "EN_expand" : "", 
-        "FR": "",
-        "FR_expand" : ""
+        "EN": "BMI",
+        "EN_expand" : "body mass index", 
+        "FR": "IMC",
+        "FR_expand" : "indice de masse corporelle"
     },
     {
-        "EN": "",
-        "EN_expand" : "", 
-        "FR": "",
-        "FR_expand" : ""
+        "EN": "NMS",
+        "EN_expand" : "New Medicine Service", 
+        "FR": "SMN",
+        "FR_expand" : "service des nouvelles médeciene"
     },
     {
-        "EN": "",
-        "EN_expand" : "", 
-        "FR": "",
-        "FR_expand" : ""
+        "EN": "ABPM",
+        "EN_expand" : "ambulatory blood pressure monitoring", 
+        "FR": "SATA",
+        "FR_expand" : "surveillance ambulatoire de la tension art\u00e9rielle"
     },
     {
-        "EN": "",
-        "EN_expand" : "", 
-        "FR": "",
-        "FR_expand" : ""
-    },
-    {
-        "EN": "",
-        "EN_expand" : "", 
-        "FR": "",
-        "FR_expand" : ""
-    },
-    {
-        "EN": "",
-        "EN_expand" : "", 
-        "FR": "",
-        "FR_expand" : ""
-    },
-    {
-        "EN": "",
-        "EN_expand" : "", 
-        "FR": "",
-        "FR_expand" : ""
-    },
-    {
-        "EN": "",
-        "EN_expand" : "", 
-        "FR": "",
-        "FR_expand" : ""
-    },
-    {
-        "EN": "",
-        "EN_expand" : "", 
-        "FR": "",
-        "FR_expand" : ""
-    },
-    {
-        "EN": "",
-        "EN_expand" : "", 
-        "FR": "",
-        "FR_expand" : ""
-    },
-    {
-        "EN": "",
-        "EN_expand" : "", 
-        "FR": "",
-        "FR_expand" : ""
-    },
-    {
-        "EN": "",
-        "EN_expand" : "", 
-        "FR": "",
-        "FR_expand" : ""
-    },
-    {
-        "EN": "",
-        "EN_expand" : "", 
-        "FR": "",
-        "FR_expand" : ""
-    },
+        "EN": "HBPM",
+        "EN_expand" : "home blood pressure monitoring", 
+        "FR": "SPAD",
+        "FR_expand" : "surveillance de la pression art\u00e9rielle \u00e0 domicile"
+    }
 ]
