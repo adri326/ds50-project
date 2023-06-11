@@ -1,5 +1,6 @@
 const chat = document.getElementById("chatbot-chat");
-
+const sendButton = document.getElementById("chatbot-new-message-send-button");
+const sendIcon = document.getElementById("send-icon");
 
 $("#chatbot-open-container").click(function () {
     $("#open-chat-button").toggle(200);
@@ -7,16 +8,20 @@ $("#chatbot-open-container").click(function () {
     $("#chatbot-container").fadeToggle(200);
 });
 
-document.getElementById("chatbot-new-message-send-button").addEventListener("click", newInput);
+sendButton.addEventListener("click", function () {
+    if (!sendButton.classList.contains("loading")) {
+        newInput();
+    }
+});
 
 document.getElementById("chatbot-input").addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !sendButton.classList.contains("loading")) {
         newInput();
     }
 });
 
 function newInput() {
-    newText = document.getElementById("chatbot-input").value;
+    const newText = document.getElementById("chatbot-input").value;
     console.log(newText);
     if (newText !== "") {
         document.getElementById("chatbot-input").value = "";
@@ -25,11 +30,10 @@ function newInput() {
     }
 }
 
-
 function addMessage(type, text) {
     let messageDiv = document.createElement("div");
     let responseText = document.createElement("p");
-    responseText.appendChild(document.createTextNode(text));
+    responseText.innerHTML = text;
 
     if (type === "sent") {
         messageDiv.classList.add("chatbot-messages", "chatbot-sent-messages");
@@ -41,11 +45,12 @@ function addMessage(type, text) {
     chat.prepend(messageDiv);
 }
 
-
 function generateResponse(prompt, text) {
-    // Here you can add your answer-generating code
+    sendIcon.classList.remove("fa-solid", "fa-paper-plane");
+    sendIcon.classList.add("fa-solid", "fa-spinner", "fa-spin");
+    sendButton.classList.add("loading"); // On ajoute la classe "loading" au bouton d'envoi
+
     console.log("on intéroge l'API : ", text);
-    //L'API est appelée ici avec AJAX
     const data = {data: text};
     const config = {
         method: "POST",
@@ -53,12 +58,21 @@ function generateResponse(prompt, text) {
     }
     fetch('http://127.0.0.1:5000/', config)
         .then(response => response.json()
-            .then(data => (addMessage("received", data.message)))
-            .catch(error => {addMessage("received", 'Une erreur s\'est produite : ' + error)}))
+            .then(data => {
+                sendIcon.classList.remove("fa-solid", "fa-spinner", "fa-spin");
+                sendIcon.classList.add("fa-solid", "fa-paper-plane");
+                sendButton.classList.remove("loading"); // On supprime la classe "loading" du bouton d'envoi
+                addMessage("received", data.message);
+            })
+            .catch(error => {
+                sendIcon.classList.remove("fa-solid", "fa-spinner", "fa-spin");
+                sendIcon.classList.add("fa-solid", "fa-paper-plane");
+                sendButton.classList.remove("loading"); // On supprime la classe "loading" du bouton d'envoi
+                addMessage("received", 'Une erreur s\'est produite : ' + error);
+            }))
         .catch(error => {
             console.log('Une erreur s\'est produite : ' + error);
         });
 
-    //L'API répond ici
     console.log("L'API répond : ", "Great to hear that!");
 }
