@@ -27,7 +27,7 @@ def interogation():
     q = Queue()
 
     # Exécuter la fonction en parallèle
-    p = Process(target=chat.chatbot, args=(sentences, message, df, model, q))
+    p = Process(target=chat.chatbot, args=(sentences_applatie, message, df, model, correspondance, q))
     p.start()
 
     result = q.get()
@@ -48,7 +48,7 @@ def liste_questions_med():
 
 if __name__ == "__main__":
     # Importer les données
-    sentences, df = chat.traitement_donnees()
+    sentences, df, sentences_applatie = chat.traitement_donnees()
     correspondance = chat.corres(sentences)
 
     # Chargement du modèle
