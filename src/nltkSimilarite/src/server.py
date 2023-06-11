@@ -32,7 +32,7 @@ def interogation():
 
     result = q.get()
 
-    data_resultat = {"message": result}
+    data_resultat = {"message": result.replace("\n", "<br/>")}
     response = jsonify(data_resultat)
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
