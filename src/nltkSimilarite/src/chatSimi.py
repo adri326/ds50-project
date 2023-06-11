@@ -1,4 +1,5 @@
 # Réalisation de fonction pour le calcul de similarité entre phrases
+from copy import deepcopy
 
 # Inportation des librairies
 import pandas as pd
@@ -130,9 +131,9 @@ def traitement_donnees():
     df = pd.DataFrame({'questions': sentences, 'a_EN': data["a_EN"]})
 
     # On doit applatire le dataset
-    sentences = [sentence for sublist in sentences for sentence in sublist]
+    sentences_applatie = [sentence for sublist in sentences for sentence in sublist]
 
-    return sentences, df
+    return sentences, df, sentences_applatie
 
 
 def calcul_similarite(sentences, our_sentence, model):
@@ -180,25 +181,33 @@ def corres(sentences):
             correspondance[i][0].append(compteur)
             compteur += 1
 
+    print(correspondance[0:5])
     return correspondance
 
 
 def reponse(final_winners, correspondance, our_sentence, data):
-    seuil = 0.9
-    rep = ""
+    seuil = 0.7
+    print(f'\nScore : \n\n  {final_winners[0][1]}')
+    print(f'\nLa question : \n\n {final_winners[0][0]}')
+    # print(final_winners[0][2])
 
-    # if seuil < final_winners[3][1] and find_value(correspondance, final_winners[0][2]) == find_value(correspondance,
-    #                                                                                                  final_winners[1][
-    #                                                                                                      2]) == find_value(
-    #     correspondance, final_winners[2][2]) == find_value(correspondance, final_winners[3][2]):
-    #     for arr in final_winners[0:2]:
-    #         print(f'\nScore : \n\n  {arr[1]}')
-    #         print(f'\nLa question : \n\n {arr[0]}')
-    #         indice_rep = find_value(correspondance, arr[2])
-    #         print(f'\nLa réponse : \n\n {data["a_EN"][indice_rep]}')
-    #         rep = data["a_EN"][indice_rep]
+    # print(correspondance[0:5])
+    print(find_value(correspondance, final_winners[0][2]))
+
+    '''if seuil < final_winners[3][1] and find_value(correspondance, final_winners[0][2]) == find_value(correspondance,
+                                                                                                     final_winners[1][
+                                                                                                         2]) == find_value(
+        correspondance, final_winners[2][2]) == find_value(correspondance, final_winners[3][2]):
+        for arr in final_winners[0:2]:
+            print(f'\nScore : \n\n  {arr[1]}')
+            print(f'\nLa question : \n\n {arr[0]}')
+            indice_rep = find_value(correspondance, arr[2])
+            print(f'\nLa réponse : \n\n {data["a_EN"][indice_rep]}')
+            rep = data["a_EN"][indice_rep]'''
+
     if final_winners[0][1] >= seuil:
         rep = data["a_EN"][find_value(correspondance, final_winners[0][2])]
+
     else:
         print("On interroge l'IA ChatGPT")
         # Il faut enregistrer la question dans un fichier csv (forme : questions, réponse) à la suite des autres
@@ -224,9 +233,8 @@ def reponse(final_winners, correspondance, our_sentence, data):
     return rep
 
 
-def chatbot(sentences, our_sentence, df, model, q):
+def chatbot(sentences, our_sentence, df, model, correspondance, q):
     final_winners = calcul_similarite(sentences, our_sentence, model)
-    correspondance = corres(sentences)
 
     # return reponse(final_winners, correspondance, our_sentence, df)
     q.put(reponse(final_winners, correspondance, our_sentence, df))
