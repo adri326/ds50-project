@@ -6,6 +6,8 @@ import pandas as pd
 from sentence_transformers import util
 import csv
 import os
+import json
+import string
 
 '''
 from selenium.webdriver.remote.webdriver import By
@@ -136,12 +138,9 @@ def traitement_donnees():
     return sentences, df, sentences_applatie
 
 
-def calcul_similarite(sentences, our_sentence, model):
+def calcul_similarite(sentences, our_sentence, model, embeddings):
     # lets embed our sentence
     my_embedding = model.encode(our_sentence)
-
-    # lets embed the corpus
-    embeddings = model.encode(sentences)
 
     # Compute cosine similarity between my sentence, and each one in the corpus
     cos_sim = util.cos_sim(my_embedding, embeddings)
@@ -152,7 +151,6 @@ def calcul_similarite(sentences, our_sentence, model):
     for arr in cos_sim:
         for i, each_val in enumerate(arr):
             winners.append([sentences[i], each_val, i])
-
 
     # lets get the top 2 sentences
     final_winners = sorted(winners, key=lambda x: x[1], reverse=True)
@@ -185,7 +183,7 @@ def corres(sentences):
     return correspondance
 
 
-def reponse(final_winners, correspondance, our_sentence, data):
+def reponse(final_winners, correspondance, our_sentence, data, acronyme):
     seuil = 0.7
     print(f'\nScore : \n\n  {final_winners[0][1]}')
     print(f'\nLa question : \n\n {final_winners[0][0]}')
@@ -206,7 +204,7 @@ def reponse(final_winners, correspondance, our_sentence, data):
             rep = data["a_EN"][indice_rep]'''
 
     if final_winners[0][1] >= seuil:
-        rep = data["a_EN"][find_value(correspondance, final_winners[0][2])]
+        rep = replace_acronymes(data["a_EN"][find_value(correspondance, final_winners[0][2])], acronyme)
 
     else:
         print("On interroge l'IA ChatGPT")
@@ -233,8 +231,33 @@ def reponse(final_winners, correspondance, our_sentence, data):
     return rep
 
 
-def chatbot(sentences, our_sentence, df, model, correspondance, q):
-    final_winners = calcul_similarite(sentences, our_sentence, model)
+def chatbot(sentences, our_sentence, df, model, correspondance, embeddings, acronyme, q):
+    final_winners = calcul_similarite(sentences, our_sentence, model, embeddings)
 
     # return reponse(final_winners, correspondance, our_sentence, df)
-    q.put(reponse(final_winners, correspondance, our_sentence, df))
+    q.put(reponse(final_winners, correspondance, our_sentence, df, acronyme))
+
+
+# Les acronymes
+
+
+# Fonction pour obtenir l'expansion en anglais à partir de la clé
+def get_expansion(key, acronymes):
+    for item in acronymes:
+        if item["EN"] == key:
+            return item["EN_expand"]
+    return None
+
+
+def replace_acronymes(phrase, acronymes):
+    # Pour enlever la ponctuation
+
+    translator = str.maketrans('', '', string.punctuation)
+
+    words = phrase.split()
+    for word in words:
+        aux = get_expansion(word.translate(translator), acronymes)
+        if aux is not None and aux != '':
+            phrase = phrase.replace(word, "<span class='tooltip'>" + word + "<span class='tooltiptext'>" + aux +
+                                    "</span> </span>")
+    return phrase

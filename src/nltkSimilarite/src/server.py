@@ -5,6 +5,8 @@ import get_any_anwser as get
 from flask import Flask, jsonify, request
 import json
 from multiprocessing import Process, Queue
+import os
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 app = Flask(__name__)
 app.config["DEBUG"] = True
@@ -27,7 +29,8 @@ def interogation():
     q = Queue()
 
     # Exécuter la fonction en parallèle
-    p = Process(target=chat.chatbot, args=(sentences_applatie, message, df, model, correspondance, q))
+    p = Process(target=chat.chatbot,
+                args=(sentences_applatie, message, df, model, correspondance, embeddings, Acronymes, q))
     p.start()
 
     result = q.get()
@@ -46,8 +49,12 @@ def liste_questions_med():
     return reponse
 
 
+with open('../../../dataset/acro.json', 'r') as f:
+    Acronymes = json.load(f)
+
 if __name__ == "__main__":
     import torch.multiprocessing as mp
+
     mp.set_start_method('spawn')
 
     # Importer les données
@@ -56,6 +63,9 @@ if __name__ == "__main__":
 
     # Chargement du modèle
     model = SentenceTransformer('all-MiniLM-L6-v2')
+
+    # lets embed the corpus
+    embeddings = model.encode(sentences_applatie)
 
     # print(chat.chatbot(sentences, "What is the difference between a data scientist and a data engineer?", df))
 
