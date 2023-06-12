@@ -4,6 +4,7 @@
 import pandas as pd
 from sentence_transformers import util
 import csv
+import os
 
 '''
 from selenium.webdriver.remote.webdriver import By
@@ -13,7 +14,7 @@ import random
 import json
 '''
 
-''' 
+'''
     Début API contournée ChatGPT
 '''
 
@@ -98,14 +99,14 @@ def skip_tuto():
     sleep(1)
 '''
 
-''' 
+'''
     Fin API contournée ChatGPT
 '''
 
 
 def traitement_donnees():
     # Récupération des données du JSON ./dataset/dataset_5Q.json
-    data = pd.read_json('../../../dataset/dataset_5Q.json')
+    data = pd.read_json(os.path.dirname(__file__) + '/../../../dataset/dataset_5Q.json')
     data.head()
 
     # Récupérer les questions
@@ -151,6 +152,7 @@ def calcul_similarite(sentences, our_sentence, model):
         for i, each_val in enumerate(arr):
             winners.append([sentences[i], each_val, i])
 
+
     # lets get the top 2 sentences
     final_winners = sorted(winners, key=lambda x: x[1], reverse=True)
 
@@ -185,16 +187,18 @@ def reponse(final_winners, correspondance, our_sentence, data):
     seuil = 0.9
     rep = ""
 
-    if seuil < final_winners[3][1] and find_value(correspondance, final_winners[0][2]) == find_value(correspondance,
-                                                                                                     final_winners[1][
-                                                                                                         2]) == find_value(
-        correspondance, final_winners[2][2]) == find_value(correspondance, final_winners[3][2]):
-        for arr in final_winners[0:2]:
-            print(f'\nScore : \n\n  {arr[1]}')
-            print(f'\nLa question : \n\n {arr[0]}')
-            indice_rep = find_value(correspondance, arr[2])
-            print(f'\nLa réponse : \n\n {data["a_EN"][indice_rep]}')
-            rep = data["a_EN"][indice_rep]
+    # if seuil < final_winners[3][1] and find_value(correspondance, final_winners[0][2]) == find_value(correspondance,
+    #                                                                                                  final_winners[1][
+    #                                                                                                      2]) == find_value(
+    #     correspondance, final_winners[2][2]) == find_value(correspondance, final_winners[3][2]):
+    #     for arr in final_winners[0:2]:
+    #         print(f'\nScore : \n\n  {arr[1]}')
+    #         print(f'\nLa question : \n\n {arr[0]}')
+    #         indice_rep = find_value(correspondance, arr[2])
+    #         print(f'\nLa réponse : \n\n {data["a_EN"][indice_rep]}')
+    #         rep = data["a_EN"][indice_rep]
+    if final_winners[0][1] >= seuil:
+        rep = data["a_EN"][find_value(correspondance, final_winners[0][2])]
     else:
         print("On interroge l'IA ChatGPT")
         # Il faut enregistrer la question dans un fichier csv (forme : questions, réponse) à la suite des autres

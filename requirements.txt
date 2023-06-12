@@ -5,3 +5,5 @@ scikit-learn
 gensim
 pandas
 tensorflow
+sentence_transformers
+flask
