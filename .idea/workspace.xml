@@ -167,13 +167,24 @@
       <workItem from="1685654507260" duration="16000" />
       <workItem from="1685695194733" duration="1329000" />
       <workItem from="1685697198714" duration="303000" />
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+      <workItem from="1685727487159" duration="4528000" />
+=======
+>>>>>>> f2be013 (maj du style du chatbot)
       <workItem from="1685727487159" duration="4903000" />
       <workItem from="1686140562646" duration="24000" />
       <workItem from="1686143147229" duration="1000" />
       <workItem from="1686501680382" duration="26000" />
       <workItem from="1686501760110" duration="95000" />
+<<<<<<< HEAD
+      <workItem from="1686505688173" duration="4478000" />
+=======
       <workItem from="1686505688173" duration="4687000" />
       <workItem from="1686511372608" duration="2170000" />
+>>>>>>> f32f54a (maj du style du chatbot)
+>>>>>>> f2be013 (maj du style du chatbot)
     </task>
     <task id="LOCAL-00001" summary="First commit Bob">
       <created>1682671849914</created>
@@ -273,6 +284,12 @@
       <option name="project" value="LOCAL" />
       <updated>1685697451182</updated>
     </task>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    <option name="localTasksCounter" value="15" />
+=======
+>>>>>>> f2be013 (maj du style du chatbot)
     <task id="LOCAL-00015" summary="il faut intégrer chatgpt, le chatbot marche">
       <created>1685733490062</created>
       <option name="number" value="00015" />
@@ -280,6 +297,9 @@
       <option name="project" value="LOCAL" />
       <updated>1685733490062</updated>
     </task>
+<<<<<<< HEAD
+    <option name="localTasksCounter" value="16" />
+=======
     <task id="LOCAL-00016" summary="il faut intégrer chatgpt, le chatbot marche">
       <created>1686510317267</created>
       <option name="number" value="00016" />
@@ -288,6 +308,8 @@
       <updated>1686510317267</updated>
     </task>
     <option name="localTasksCounter" value="17" />
+>>>>>>> f32f54a (maj du style du chatbot)
+>>>>>>> f2be013 (maj du style du chatbot)
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,7 +342,15 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ds50_project$chatbotV2.coverage" NAME="chatbotV2 Coverage Results" MODIFIED="1684790614140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/nltkSimilarite" />
+<<<<<<< HEAD
+    <SUITE FILE_PATH="coverage/ds50_project$server.coverage" NAME="server Coverage Results" MODIFIED="1686508470705" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/nltkSimilarite/src" />
+=======
+<<<<<<< HEAD
+    <SUITE FILE_PATH="coverage/ds50_project$server.coverage" NAME="server Coverage Results" MODIFIED="1685733035275" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/nltkSimilarite/src" />
+=======
     <SUITE FILE_PATH="coverage/ds50_project$server.coverage" NAME="server Coverage Results" MODIFIED="1686513424541" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/nltkSimilarite/src" />
+>>>>>>> f32f54a (maj du style du chatbot)
+>>>>>>> f2be013 (maj du style du chatbot)
     <SUITE FILE_PATH="coverage/ds50_project$chatbot2.coverage" NAME="chatbot2 Coverage Results" MODIFIED="1684787904193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/nltkSimilarite" />
     <SUITE FILE_PATH="coverage/ds50_project$chatbot.coverage" NAME="chatbot Coverage Results" MODIFIED="1684790048178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/nltkSimilarite" />
     <SUITE FILE_PATH="coverage/ds50_project$test.coverage" NAME="test Coverage Results" MODIFIED="1684770093116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Bob" />

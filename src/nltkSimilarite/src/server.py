@@ -47,6 +47,9 @@ def liste_questions_med():
 
 
 if __name__ == "__main__":
+    import torch.multiprocessing as mp
+    mp.set_start_method('spawn')
+
     # Importer les données
     sentences, df, sentences_applatie = chat.traitement_donnees()
     correspondance = chat.corres(sentences)

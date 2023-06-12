@@ -1,3 +1,11 @@
+import re
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
+import itertools
+import random
+import math
+from typing import Callable, Iterable, Tuple
+
 from nltk.corpus import subjectivity
 from nltk.sentiment import SentimentAnalyzer
 from nltk.sentiment.util import mark_negation
@@ -10,13 +18,6 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neural_network import MLPClassifier
 
 import pandas
-
-import re
-import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'
-import itertools
-import random
-import math
 
 import gensim.downloader
 
@@ -246,8 +247,8 @@ def augment_vectors_gpu(vectors, n_tokens):
 
     return vectors[start:(start + n_tokens)].to_tensor(shape=[n_tokens, 25])
 
-def evaluate_word2vec_model(model, n_tokens):
-    def evaluate(text):
+def evaluate_word2vec_model(model, n_tokens) -> Callable[[str], Iterable[Tuple[str, float]]]:
+    def evaluate(text: str) -> Iterable[Tuple[str, float]]:
         tokens = word_tokenize(text)
         vectors = get_vectors(filter_tokens(tokens))
         tokens = join_tokens(tokens)

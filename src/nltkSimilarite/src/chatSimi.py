@@ -5,6 +5,7 @@ from copy import deepcopy
 import pandas as pd
 from sentence_transformers import util
 import csv
+import os
 
 '''
 from selenium.webdriver.remote.webdriver import By
@@ -14,7 +15,7 @@ import random
 import json
 '''
 
-''' 
+'''
     Début API contournée ChatGPT
 '''
 
@@ -99,14 +100,14 @@ def skip_tuto():
     sleep(1)
 '''
 
-''' 
+'''
     Fin API contournée ChatGPT
 '''
 
 
 def traitement_donnees():
     # Récupération des données du JSON ./dataset/dataset_5Q.json
-    data = pd.read_json('../../../dataset/dataset_5Q.json')
+    data = pd.read_json(os.path.dirname(__file__) + '/../../../dataset/dataset_5Q.json')
     data.head()
 
     # Récupérer les questions
@@ -152,6 +153,7 @@ def calcul_similarite(sentences, our_sentence, model):
         for i, each_val in enumerate(arr):
             winners.append([sentences[i], each_val, i])
 
+
     # lets get the top 2 sentences
     final_winners = sorted(winners, key=lambda x: x[1], reverse=True)
 
@@ -187,9 +189,9 @@ def reponse(final_winners, correspondance, our_sentence, data):
     seuil = 0.7
     print(f'\nScore : \n\n  {final_winners[0][1]}')
     print(f'\nLa question : \n\n {final_winners[0][0]}')
-    print(final_winners[0][2])
+    # print(final_winners[0][2])
 
-    print(correspondance[0:5])
+    # print(correspondance[0:5])
     print(find_value(correspondance, final_winners[0][2]))
 
     '''if seuil < final_winners[3][1] and find_value(correspondance, final_winners[0][2]) == find_value(correspondance,
