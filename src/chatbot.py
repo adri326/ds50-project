@@ -1,8 +1,8 @@
-# TODO :)
-
 from typing import Callable, Iterable, Tuple
 from chatcontext import ChatContext, ChatPipeline, FallbackResponse, PartialMessage
 from sentiment import load_word2vec_model
+from similarity import SimilarityStep, load_questions_from_json
+from sentence_transformers import SentenceTransformer
 
 def sentiment_step(evaluate_model: Callable[[str], Iterable[Tuple[str, float]]]) -> Callable[[ChatContext, PartialMessage], None]:
     def evaluate(ctx: ChatContext, msg: PartialMessage):
@@ -11,10 +11,7 @@ def sentiment_step(evaluate_model: Callable[[str], Iterable[Tuple[str, float]]])
 
     return evaluate
 
-if __name__ == "__main__":
-    from sentence_transformers import SentenceTransformer
-    from similarity import SimilarityStep, load_questions_from_json
-
+def get_chat_pipeline() -> ChatPipeline:
     pipeline = ChatPipeline()
     pipeline.add_step("sentiment", sentiment_step(load_word2vec_model(6)[0]))
 
@@ -26,7 +23,9 @@ if __name__ == "__main__":
 
     pipeline.add_step("fallback", FallbackResponse(["Sorry, I couldn't understand you"]))
 
+if __name__ == "__main__":
     context = ChatContext()
+    pipeline = get_chat_pipeline()
 
     while True:
         message = PartialMessage()

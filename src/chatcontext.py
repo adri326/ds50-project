@@ -85,8 +85,8 @@ class ChatState(Enum):
     Answering = 1
 
 class ChatContext:
-    def __init__(self, id = str(ULID())) -> None:
-        self.id: str = id
+    def __init__(self, id: str | None = None) -> None:
+        self.id: str = id if type(id) == str else str(ULID())
         self.messages: List[Message] = []
         self._response = None
         self.state: ChatState = ChatState.Idle
