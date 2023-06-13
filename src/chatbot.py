@@ -12,8 +12,18 @@ def sentiment_step(evaluate_model: Callable[[str], Iterable[Tuple[str, float]]])
     return evaluate
 
 if __name__ == "__main__":
+    from sentence_transformers import SentenceTransformer
+    from similarity import SimilarityStep, load_questions_from_json
+
     pipeline = ChatPipeline()
     pipeline.add_step("sentiment", sentiment_step(load_word2vec_model(6)[0]))
+
+    pipeline.add_step("similarity", SimilarityStep(
+        load_questions_from_json("./dataset/dataset_5Q.json"),
+        SentenceTransformer("all-MiniLM-L6-v2"),
+        0.75
+    ))
+
     pipeline.add_step("fallback", FallbackResponse(["Sorry, I couldn't understand you"]))
 
     context = ChatContext()

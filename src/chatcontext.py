@@ -68,6 +68,9 @@ class PartialMessage:
         self.content = content
         self.author = author
 
+    def has_content(self) -> bool:
+        return not (self.author == None and self.content == None)
+
     def set_metadata(self, key: str, data: Any):
         self.metadata[key] = data
 
@@ -82,15 +85,11 @@ class ChatState(Enum):
     Answering = 1
 
 class ChatContext:
-    id: str
-    messages: List[Message]
-    state: ChatState
-
     def __init__(self, id = str(ULID())) -> None:
-        self.id = id
-        self.messages = []
+        self.id: str = id
+        self.messages: List[Message] = []
         self._response = None
-        self.state = ChatState.Idle
+        self.state: ChatState = ChatState.Idle
 
     def append_message(self, message: Message):
         self.messages.append(message)
@@ -159,7 +158,7 @@ class FallbackResponse:
         self.responses = responses
 
     def __call__(self, ctx: ChatContext, user_message: PartialMessage) -> None:
-        if user_message.author == None or user_message.content == None:
+        if not user_message.has_content():
             user_message.set_content(self.responses[random.randint(0, len(self.responses) - 1)], "fallback")
 
 class TestChat(unittest.TestCase):
