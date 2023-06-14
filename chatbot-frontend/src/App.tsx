@@ -1,23 +1,27 @@
-import { createSignal, type Component, createEffect, Show } from 'solid-js';
-import { ChatContext, createChat } from './api';
-import OpenChatButton from './OpenChatButton';
-import MessageList from './MessageList';
-import MessageForm from './MessageForm';
+import { createSignal, type Component, Show } from "solid-js";
+import { ChatContext } from "./api";
+import classes from "./App.module.css";
+
+import OpenChatButton from "./OpenChatButton";
+import MessageList from "./MessageList";
+import MessageForm from "./MessageForm";
+
 
 const App: Component = () => {
     const [chatContext, setChatContext] = createSignal<ChatContext>();
     const [isOpen, setIsOpen] = createSignal(false);
 
     return (<>
+        {/* In an actual application, you would have the page be underneath the chatbot */}
+        <div class={classes.hint}><i>Press the "Open Chatbot" button to start!</i></div>
+
         <Show when={isOpen() && chatContext() !== undefined}>
-            <main class="chatbot-container">
-                <div class="chatbot-interface">
-                    <h2 class="chatbot-header">
+            <main class={classes.container}>
+                <div>
+                    <h2 class={classes.title}>
                         Suivi de santé
                     </h2>
-                    <section class="chatbot-chat">
-                        <MessageList messages={() => chatContext()!.messages} />
-                    </section>
+                    <MessageList messages={() => chatContext()!.messages} />
                     <MessageForm
                         chatContext={() => chatContext()!}
                         setChatContext={setChatContext}

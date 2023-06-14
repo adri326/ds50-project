@@ -1,0 +1,24 @@
+.button {
+    all: unset;
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: #7090f0;
+    text-align: center;
+    cursor: pointer;
+    font-size: 2rem;
+    box-sizing: border-box;
+    z-index: 2;
+}
+
+.button.open {
+    background: #d0d0d0;
+}
+
+.button:hover, .button:focus {
+    background: white;
+    border: 4px solid #7090f0;
+}

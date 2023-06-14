@@ -1,0 +1,41 @@
+.form {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.input {
+    flex: 1;
+    font-size: inherit;
+    border: 2px solid #808080;
+    border-radius: 4px;
+    padding: 0.25em 0.5em;
+    min-width: 10ch;
+}
+
+.input:hover {
+    border: 2px solid #7090f0;
+}
+
+.input:active, .input:focus {
+    border: 2px solid #7090f0;
+    outline: 2px solid #7090f0;
+}
+
+.send {
+    all: unset;
+    flex-shrink: 0;
+    cursor: pointer;
+    height: 2em;
+    width: 2em;
+    text-align: center;
+    background: #7090f0;
+    border-radius: 50%;
+}
+
+.send:hover, .send:active, .send:focus {
+    background: white;
+    outline: 4px solid #7090f0;
+}
