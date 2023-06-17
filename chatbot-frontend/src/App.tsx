@@ -1,5 +1,5 @@
-import { createSignal, type Component, Show } from "solid-js";
-import { ChatContext } from "./api";
+import { createSignal, type Component, Show, createResource } from "solid-js";
+import { ChatContext, getAcronyms } from "./api";
 import classes from "./App.module.css";
 
 import OpenChatButton from "./OpenChatButton";
@@ -10,6 +10,7 @@ import MessageForm from "./MessageForm";
 const App: Component = () => {
     const [chatContext, setChatContext] = createSignal<ChatContext>();
     const [isOpen, setIsOpen] = createSignal(false);
+    const [acronyms] = createResource(getAcronyms);
 
     return (<>
         {/* In an actual application, you would have the page be underneath the chatbot */}
@@ -21,7 +22,10 @@ const App: Component = () => {
                     <h2 class={classes.title}>
                         Suivi de santé
                     </h2>
-                    <MessageList messages={() => chatContext()!.messages} />
+                    <MessageList
+                        messages={() => chatContext()!.messages}
+                        acronyms={acronyms}
+                    />
                     <MessageForm
                         chatContext={() => chatContext()!}
                         setChatContext={setChatContext}

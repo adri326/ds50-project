@@ -11,14 +11,18 @@ def sentiment_step(evaluate_model: Callable[[str], Iterable[Tuple[str, float]]])
 
     return evaluate
 
-def get_chat_pipeline() -> ChatPipeline:
+def get_chat_pipeline(lang: str) -> ChatPipeline:
     pipeline = ChatPipeline()
     pipeline.add_step("sentiment", sentiment_step(load_word2vec_model(6)[0]))
 
     pipeline.add_step("similarity", SimilarityStep(
-        load_questions_from_json("./dataset/dataset_5Q.json"),
+        load_questions_from_json(
+            "./dataset/dataset_5Q.json",
+            "q_EN" if lang == "en" else "q_FR",
+            "qs_EN" if lang == "en" else "qs_FR"
+        ),
         SentenceTransformer("all-MiniLM-L6-v2"),
-        0.75
+        0.66
     ))
 
     pipeline.add_step("fallback", FallbackResponse(["Sorry, I couldn't understand you"]))

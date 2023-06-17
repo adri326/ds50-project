@@ -13,7 +13,7 @@
 .container > div {
     width: 90vw;
     /* dvh units aren't widely supported yet */
-    width: min(90dvw, 60ch);
+    width: min(90dvw, 90ch);
     background: #d0d0d0;
     box-sizing: border-box;
     display: flex;

@@ -8,6 +8,8 @@
     overflow-y: auto;
     background: white;
     border-radius: 0.25em;
+
+    position: relative;
 }
 
 .message-list {
@@ -29,6 +31,9 @@
     padding: 0.5em 1em;
     background: #d0d0d0;
     border-radius: 1em;
+    max-width: 80%;
+    display: flex;
+    flex-direction: column
 }
 
 .message-list > li.own-message {
@@ -57,4 +62,53 @@
     .message-list > li.received-message + li.received-message {
         border-top-left-radius: 0.5em;
     }
+}
+
+.message-list > li > div.content > p:first-child {
+    margin-top: 0;
+}
+
+.message-list > li > div.content > p:last-child {
+    margin-bottom: 0;
+}
+
+.message-list > li > div.content > ul {
+    padding-left: 0;
+    list-style: none;
+}
+
+.message-list > li > div.content > ul > li::before {
+    content: "-";
+    display: inline-block;
+    margin-right: 0.5em;
+    margin-left: 0.25em;
+}
+
+.acronym {
+    cursor: pointer;
+    color: #a030f0;
+    text-decoration: underline;
+}
+
+li.own-message .acronym {
+    color: #903050;
+}
+
+.acronym-hover-message {
+    position: absolute;
+    pointer-events: none;
+    background: rgba(20, 20, 20, 0.9);
+    color: white;
+    padding: 0.5em;
+    transform: translate(-50%, 1.25em);
+    border-radius: 0.5em;
+    box-shadow: 0 0.5em 1em -0.5em rgba(0, 0, 0, 0.75);
+}
+
+.sentiment {
+    width: 1em;
+    height: 1em;
+    background-color: var(--color);
+    align-self: flex-end;
+    border-radius: 50%;
 }

@@ -29,6 +29,43 @@ export async function createChat(): Promise<ChatContext> {
     );
 }
 
+export async function postMessage(context: ChatContext, message: string): Promise<ChatContext> {
+    return (
+        fetch(API_BASE_URL + "chat/" + context.id, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                message
+            })
+        })
+        .then((res) => res.json())
+        .then(serializeContext)
+    );
+}
+
+export async function getAcronyms(): Promise<Record<string, string>> {
+    return (
+        fetch(API_BASE_URL + "acronyms")
+        .then((res) => res.json())
+        .then((res: unknown) => {
+            if (typeof res !== "object" || !res) {
+                throw new Error("Assertion error: expected response to be an object");
+            }
+
+            for (const key in res) {
+                const value = (res as Record<string, unknown>)[key];
+                if (typeof value !== "string") {
+                    throw new Error("Assertion error: expected response to be an object of strings, got " + value);
+                }
+            }
+
+            return res as Record<string, string>;
+        })
+    );
+}
+
 // One possible optimization for this would be to have a global cache of known message IDs,
 // and pull from that cache
 export function serializeContext(rawContext: unknown): ChatContext {

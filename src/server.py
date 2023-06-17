@@ -3,13 +3,20 @@ from flask_cors import CORS, cross_origin
 from chatbot import get_chat_pipeline
 from chatcontext import ChatContext, PartialMessage, ChatState
 from ulid import ULID
+from acronym import load_acronyms
 
 app = Flask(__name__)
 app.config["DEBUG"] = False
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-chat_pipeline = get_chat_pipeline()
+language = "en"
+chat_pipeline = get_chat_pipeline(language)
 chat_contexes: dict[str, ChatContext] = dict()
+
+presentation = {
+    "en": "Hello, I am Bob, your medical chatbot. Feel free to ask me any question about your heart!",
+    "fr": "Bonjour, je suis Bob, votre chatbot médical. N'hésitez pas à me demander des questions à propos de votre coeur!"
+}[language]
 
 @app.route("/api/chat", methods=["POST"])
 @cross_origin()
@@ -19,7 +26,7 @@ def create_chat():
 
     # TODO: remove, this is for testing purposes only
     message = PartialMessage()
-    message.set_content("Hello world", "bot")
+    message.set_content(presentation, "presentation")
     chat.append_message(message.build())
 
     return jsonify(chat.serialize())
@@ -46,6 +53,11 @@ def post_message(chat_id: str):
     # chat.append_message(user_message.build())
 
     return jsonify(chat.serialize())
+
+acronyms = load_acronyms(language)
+@app.route("/api/acronyms", methods=["GET"])
+def get_acronyms():
+    return jsonify(acronyms)
 
 if __name__ == "__main__":
     app.run()

@@ -133,4 +133,5 @@ dmypy.json
 training/
 .idea/
 node_modules
-/chatbot_frontend/dist
+chatbot-frontend/dist
+chatbot-frontend/.vite
