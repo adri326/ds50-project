@@ -4,13 +4,15 @@ import classes from "./App.module.css";
 
 import OpenChatButton from "./OpenChatButton";
 import MessageList from "./MessageList";
-import MessageForm from "./MessageForm";
+import MessageForm, { SendState } from "./MessageForm";
 
 
 const App: Component = () => {
     const [chatContext, setChatContext] = createSignal<ChatContext>();
     const [isOpen, setIsOpen] = createSignal(false);
     const [acronyms] = createResource(getAcronyms);
+
+    const [sendState, setSendState] = createSignal<SendState>(SendState.Idle);
 
     return (<>
         {/* In an actual application, you would have the page be underneath the chatbot */}
@@ -25,10 +27,13 @@ const App: Component = () => {
                     <MessageList
                         messages={() => chatContext()!.messages}
                         acronyms={acronyms}
+                        isLoading={() => sendState() == SendState.InTransit}
                     />
                     <MessageForm
                         chatContext={() => chatContext()!}
                         setChatContext={setChatContext}
+                        sendState={sendState}
+                        setSendState={setSendState}
                     />
                 </div>
             </main>

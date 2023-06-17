@@ -5,14 +5,16 @@ import classes from "./MessageForm.module.css";
 export type MessageFormProps = {
     chatContext: () => ChatContext,
     setChatContext: (context: ChatContext) => void,
+    sendState: () => SendState,
+    setSendState: (state: SendState) => void,
 }
 
-const SendState = {
+export const SendState = {
     Idle: 0,
     InTransit: 1,
     Error: 2,
 } as const;
-type SendState = typeof SendState[keyof typeof SendState];
+export type SendState = typeof SendState[keyof typeof SendState];
 
 // TODO: implement a state machine for locking the sending of messages until a reply is received (or not).
 /**
@@ -22,12 +24,11 @@ type SendState = typeof SendState[keyof typeof SendState];
  **/
 export default function MessageForm(props: MessageFormProps) {
     const [content, setContent] = createSignal("");
-    const [sendState, setSendState] = createSignal<SendState>(SendState.Idle);
     let input: HTMLInputElement;
 
     async function sendMessage() {
-        if (sendState() !== SendState.InTransit) {
-            setSendState(SendState.InTransit);
+        if (props.sendState() !== SendState.InTransit) {
+            props.setSendState(SendState.InTransit);
 
             input.focus();
             const newChat = props.chatContext().clone();
@@ -46,7 +47,7 @@ export default function MessageForm(props: MessageFormProps) {
             try {
                 const response = await postMessage(newChat, message);
                 props.setChatContext(response);
-                setSendState(SendState.Idle);
+                props.setSendState(SendState.Idle);
             } catch (err) {
                 console.error(err);
                 const errorChat = props.chatContext().clone();
@@ -60,7 +61,7 @@ export default function MessageForm(props: MessageFormProps) {
                     }
                 });
                 props.setChatContext(errorChat);
-                setSendState(SendState.Error);
+                props.setSendState(SendState.Error);
             }
         }
     }
@@ -90,7 +91,7 @@ export default function MessageForm(props: MessageFormProps) {
             />
             <button type="submit" class={classes.send} title="Send message" onClick={() => {
                 input.focus();
-            }} disabled={sendState() === SendState.InTransit}>
+            }} disabled={props.sendState() === SendState.InTransit}>
                 <i class="fa-solid fa-paper-plane send-icon"></i>
             </button>
         </form>

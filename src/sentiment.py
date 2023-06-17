@@ -333,7 +333,7 @@ def train_word2vec(dataset, n_tokens = 5):
 
 def load_word2vec_model(n_tokens = 5):
     model = build_word2vec_model(n_tokens)
-    model.load_weights(f"models/sentiment_{n_tokens}.ckpt")
+    model.load_weights(f"models/sentiment_{n_tokens}.ckpt").expect_partial()
 
     load_glove()
 

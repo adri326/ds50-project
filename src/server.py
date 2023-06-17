@@ -4,6 +4,9 @@ from chatbot import get_chat_pipeline
 from chatcontext import ChatContext, PartialMessage, ChatState
 from ulid import ULID
 from acronym import load_acronyms
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 app.config["DEBUG"] = False

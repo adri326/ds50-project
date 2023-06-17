@@ -4,6 +4,8 @@ from sentiment import load_word2vec_model
 from similarity import SimilarityStep, load_questions_from_json
 from sentence_transformers import SentenceTransformer
 from acronym import load_acronyms
+from chatgpt import ChatGptStep
+from sentiment_huggingface import HuggingFaceSentiment
 
 def sentiment_step(evaluate_model: Callable[[str], Iterable[Tuple[str, float]]]) -> Callable[[ChatContext, PartialMessage], None]:
     def evaluate(ctx: ChatContext, msg: PartialMessage):
@@ -27,7 +29,10 @@ def get_chat_pipeline(lang: str) -> ChatPipeline:
         load_acronyms(lang)
     ))
 
-    pipeline.add_step("sentiment", sentiment_step(load_word2vec_model(6)[0]))
+    # pipeline.add_step("sentiment", sentiment_step(load_word2vec_model(6)[0]))
+    pipeline.add_step("sentiment", HuggingFaceSentiment())
+
+    pipeline.add_step("chatgpt", ChatGptStep(lang))
 
     pipeline.add_step("fallback", FallbackResponse(["Sorry, I couldn't understand you"]))
 

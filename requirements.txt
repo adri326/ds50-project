@@ -7,3 +7,4 @@ pandas
 tensorflow
 sentence_transformers
 flask
+openai

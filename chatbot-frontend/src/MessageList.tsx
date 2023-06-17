@@ -7,6 +7,7 @@ import { template } from "solid-js/web";
 export type MessageListProps = {
     messages: () => ChatMessage[],
     acronyms: () => (Record<string, string> | undefined),
+    isLoading: () => boolean,
 };
 
 const USER_AUTHOR = "user";
@@ -55,12 +56,12 @@ export default function MessageList(props: MessageListProps) {
                             const sentiment = message.metadata["sentiment"];
                             if (typeof sentiment !== "number") return;
 
-                            const sentimentText = "Sentiment: " + (100 * sentiment).toFixed(1).padStart(2, '0') + "%";
+                            const sentimentText = (100 * sentiment).toFixed(1).padStart(2, '0') + "%";
 
                             if (sentiment > 0.5) {
-                                return [`color-mix(in srgb, #808080, green ${200 * (sentiment - 0.5)}%`, sentimentText];
+                                return [`color-mix(in srgb, #808080, green ${200 * (sentiment - 0.5)}%`, "Sentiment: " + sentimentText, sentimentText];
                             } else {
-                                return [`color-mix(in srgb, #808080, red ${200 * (0.5 - sentiment)}%`, sentimentText];
+                                return [`color-mix(in srgb, #808080, red ${200 * (0.5 - sentiment)}%`, "Sentiment: " + sentimentText, sentimentText];
                             }
                         };
                         const received = () => message.author !== USER_AUTHOR;
@@ -120,20 +121,27 @@ export default function MessageList(props: MessageListProps) {
                                     innerHTML={renderedResolved()}
                                     ref={(l) => item = l}
                                 ></div>
-                                <Show when={sentiment()}>
-                                    <div class={classes.sentiment} style={{
-                                        "--color": sentiment()![0],
-                                    }} title={sentiment()![1]}></div>
-                                </Show>
+                                <div class={classes.metadata}>
+                                    <span class={classes.text}>{message.author}</span>
+                                    <Show when={sentiment()}>
+                                        <div class={classes.sentiment} style={{
+                                            "--color": sentiment()![0],
+                                        }} title={sentiment()![1]}></div>
+                                        <div class={classes.text}>{sentiment()![2]}</div>
+                                    </Show>
+                                </div>
                             </li>
                         );
                     }}
                 </For>
+                <Show when={props.isLoading()}><li class={[classes.loading, classes["received-message"]].join(" ")}>
+                    <i class="fa-solid fa-ellipsis"></i>
+                </li></Show>
             </ul>
 
             <Show when={acronymHover()}>
                 <div class={classes["acronym-hover-message"]} style={{
-                    left: `${acronymHover()!.x}px`,
+                    left: `${Math.max(acronymHover()!.x, 100)}px`,
                     top: `${acronymHover()!.y}px`,
                 }}>{acronymHover()!.value}</div>
             </Show>
