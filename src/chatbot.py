@@ -23,6 +23,8 @@ def get_chat_pipeline() -> ChatPipeline:
 
     pipeline.add_step("fallback", FallbackResponse(["Sorry, I couldn't understand you"]))
 
+    return pipeline
+
 if __name__ == "__main__":
     context = ChatContext()
     pipeline = get_chat_pipeline()
