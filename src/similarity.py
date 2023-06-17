@@ -1,11 +1,12 @@
 from typing import Callable, Iterable, Tuple
+import re
 
 import pandas as pd
 from sentence_transformers import util, SentenceTransformer
 from chatcontext import ChatContext, PartialMessage
 
 class SimilarityStep:
-    def __init__(self, pairs: pd.DataFrame, model: SentenceTransformer, threshold: float):
+    def __init__(self, pairs: pd.DataFrame, model: SentenceTransformer, threshold: float, acronyms: dict[str, str] | None = None):
         # A dataframe containing the questions (in the `questions` column) and their corresponding answer (in the `answer` column)
         self.pairs = pairs
 
@@ -27,6 +28,30 @@ class SimilarityStep:
 
         # A flattened dataframe containing all questions
         self.questions_flattened = self.pairs["questions"].explode().to_frame("question").reset_index()
+
+        # Augment the questions with acronyms
+        if acronyms != None:
+            additional_questions = []
+
+            def apply_acronym(question: str, src: str, target: str, case: bool):
+                if case:
+                    replaced = question.replace(src, target)
+                else:
+                    replaced = re.sub(re.compile(re.escape(src), re.IGNORECASE), target, question)
+
+                if replaced != question:
+                    additional_questions.append(replaced)
+                    self.question_indices[replaced] = self.question_indices[question]
+
+            for i, question in self.questions_flattened.iterrows():
+                for acronym, definition in acronyms.items():
+                    apply_acronym(question["question"], acronym, definition, True)
+                    apply_acronym(question["question"], definition, acronym, False)
+
+            additional_questions = pd.DataFrame({"question": additional_questions})
+            self.questions_flattened = pd.concat([self.questions_flattened, additional_questions], ignore_index=True)
+            # Please just reset the index already ;w;
+            self.questions_flattened = self.questions_flattened["question"].to_frame("question").reset_index(drop=True)
 
         # A tensor containing the embedding of all questions; may take a bit of time to compute
         self.question_embeddings = model.encode(self.questions_flattened["question"].to_list())

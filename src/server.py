@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config["DEBUG"] = False
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
-language = "en"
+language = "fr"
 chat_pipeline = get_chat_pipeline(language)
 chat_contexes: dict[str, ChatContext] = dict()
 
