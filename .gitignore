@@ -135,3 +135,4 @@ training/
 node_modules
 chatbot-frontend/dist
 chatbot-frontend/.vite
+discussions.json

@@ -5,6 +5,7 @@ from chatcontext import ChatContext, PartialMessage, ChatState
 from ulid import ULID
 from acronym import load_acronyms
 from dotenv import load_dotenv
+import json
 
 load_dotenv()
 
@@ -14,12 +15,27 @@ CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 language = "fr"
 chat_pipeline = get_chat_pipeline(language)
+
 chat_contexes: dict[str, ChatContext] = dict()
+try:
+    with open("./discussions.json") as file:
+        raw_contexes = json.load(file)
+        assert type(raw_contexes) == dict
+        chat_contexes = {key: ChatContext.deserialize(value) for key, value in raw_contexes.items()}
+except Exception as e:
+    print(e)
+    print("Discussions could not be loaded, skipping!")
+    pass
 
 presentation = {
     "en": "Hello, I am Bob, your medical chatbot. Feel free to ask me any question about your heart!",
     "fr": "Bonjour, je suis Bob, votre chatbot médical. N'hésitez pas à me demander des questions à propos de votre coeur!"
 }[language]
+
+def save_conversations():
+    serialized = {key: context.serialize() for key, context in chat_contexes.items()}
+    with open("./discussions.json", "w") as file:
+        json.dump(serialized, file)
 
 @app.route("/api/chat", methods=["POST"])
 @cross_origin()
@@ -54,6 +70,8 @@ def post_message(chat_id: str):
     chat_pipeline.get_answer(chat, user_message.build())
 
     # chat.append_message(user_message.build())
+
+    save_conversations()
 
     return jsonify(chat.serialize())
 
