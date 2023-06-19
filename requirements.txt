@@ -8,3 +8,5 @@ tensorflow
 sentence_transformers
 flask
 openai
+python-dotenv
+flask-cors

@@ -117,6 +117,8 @@ if __name__ == "__main__":
     from chatcontext import ChatPipeline
 
     model = SentenceTransformer("all-MiniLM-L6-v2")
+    # If using the french dataset:
+    # model = SentenceTransformer("distiluse-base-multilingual-cased-v1")
     step = SimilarityStep(
         load_questions_from_json("./dataset/dataset_5Q.json"),
         model,
